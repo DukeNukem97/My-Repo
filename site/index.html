@@ -4,8 +4,416 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Web</title>
+    <style>
+        body
+        {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .bar
+        {
+            z-index: 9999999;
+            position: relative;
+            width: auto;
+            height: auto;
+            cursor: pointer;
+        }
+
+        #first,#second,#third
+        {
+            margin-top: 5px;
+            display: block;
+            width: 40px;
+            height: 5px;
+            border-radius: 20px;
+            background-color: rgb(0, 0, 0);
+        }
+        #second
+        {
+            transition: all 0.5s ease-in-out;
+        }
+        #first
+        {           
+            transition: all 0.5s ease-in-out;
+            transform-origin: 0;
+        }
+        #third
+        {   
+            transition: all 0.5s ease-in-out;
+            transform-origin: 0;
+        }
+        .move2
+        {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        .move1
+        {
+            background-color: white !important;
+            transform: rotate(30deg);
+        }
+        .move3
+        {
+            background-color: white !important;
+            transform: rotate(-32deg);
+        }
+        .name
+        {
+            font-size: 30px;
+        }
+        header
+        {
+            width: 100%;
+            background-color: rgb(255, 166, 0);
+        }
+        .container
+        {
+            display: flex;
+            width: 95%;
+            height: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #slider
+        {
+            z-index: 999;
+            position: fixed;
+            top: -150%;
+            left: 40%;
+            right: -50%;
+            opacity: 0;
+            background-color: rgb(255, 166, 0);
+            width:245%;
+            border-radius: 50%;
+            height: 200%;
+            transition: all 1s ease-in-out;
+            transform: scale(0);
+            transform:rotateY(30deg);
+            transform-origin: 50% ;
+
+
+        }
+        .slider
+        {
+            opacity: 1 !important;
+            transform: scale(2) !important;
+        }
+       
+        .slider
+        {
+            pointer-events: all !important;
+            right: 0 !important;
+            opacity: 1 !important;
+        }
+        
+        #content
+        {
+            z-index: 9999;
+            text-align: center;
+            position: fixed;
+            top: 20%;
+            left: 0%;
+            translate: (-50%,-50%);
+            width: 100%;
+            color: rgb(0, 0, 0);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            transition-delay: 100ms;
+
+        }
+        .content
+        {
+            opacity: 1 !important;
+        }
+        #content li
+        {
+            margin-top: 10px;
+            list-style: none;
+            cursor: pointer;
+            font-size: 45px;
+        }
+        #content span:hover
+        {
+            color: white;
+            padding-left: 2px !important;
+        }
+        #content span
+        {
+            transition: right 0.5s ease-in-out;
+            position: relative;
+            right: -200px;
+            opacity: 0.6;
+
+        }
+        .home
+        {
+            pointer-events: all;
+            opacity: 1 !important;
+            right: 0 !important;            
+        }
+        .service
+        {
+            pointer-events: all;
+            opacity: 1 !important;
+            right: 0 !important;
+            transition-delay: 0.2s !important;            
+        }
+        .product
+        {
+            pointer-events: all;
+            opacity: 1 !important;
+            transition-delay: 0.4s !important;
+            right: 0 !important;            
+        }
+        .contact
+        {
+            pointer-events: all;
+            opacity: 1 !important;
+            transition-delay: 0.6s !important;
+            right: 0 !important;            
+        }
+       
+       .search input
+       {
+           margin: auto;
+           display: block;
+           width: 300px;
+           height: 30px;
+           border: 0;
+           border-bottom:2px solid rgb(255, 145, 0);
+           outline: none;
+           padding-left: 15px;
+       }
+        .search label .moveit
+        {
+            font-size: 20px;
+            position: absolute;
+            top: 8px;
+            transition: all 0.5s ease-in-out;
+        }
+        .search
+        {
+            margin-left:auto ;
+            margin-right: auto;
+            max-width: 310px;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .form input:focus + label .moveit,.form input:valid + label .moveit
+        {
+            top:-15px;
+        }
+
+        .search2
+        {
+            margin-left:auto ;
+            margin-right: auto;
+            max-width: 310px;
+            position: relative;
+            margin-top: 30px;
+            left: 10px;
+
+        }
+        .search2 input
+        {
+            position: absolute;
+            margin: auto;
+            display: block;
+            width: 300px;
+            height: 40px;
+            border:2px solid rgb(0, 162, 255);
+            border-left: 0;
+            outline: none;
+            padding-left: 15px;
+            border-radius: 0px 20px 20px 0px;
+        }
+        .moving
+        {
+            border-radius: 20px 0 0 20px;
+            position: absolute;
+            width: 300px;
+            display: block;
+            height: 42px;
+            border: 2px solid rgb(0, 162, 255);
+            border-right: 0;
+            left: -20px;
+            pointer-events: none;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .search2 input:focus + .moving
+        {
+            left:-50px;
+        }
+        .mark
+        {
+            position: absolute;
+            left: 10px;
+            top: 15px;
+            visibility: hidden;
+            transition: all 0.2s ease-in-out;
+        }
+        .search2 input:focus + .moving .mark
+        {
+            visibility: visible;
+        }
+        .main
+        {
+            padding: 20px;
+        }
+
+        #cont
+        {
+            z-index: 999999999;
+            position: fixed;
+            top:80%;
+            left: 10%;
+            transform: translateX(-50%,-50%);
+            transition: all 0.6s ease-in-out;
+            opacity: 0;
+        }
+        .cont
+        {
+            opacity: 1 !important;
+            top: 40% !important;
+        }
+        #notify
+        {
+            background: white;
+            position: relative;
+            width:300px;
+            height: auto;
+            border: 1px solid black;
+            text-align: justify;
+            padding: 10px;
+
+        }
+        #notify span
+        {
+            position: absolute;
+            right: 8px;
+            top:3px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+  
+        .cover
+        {
+            z-index: 9999999;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.459);
+            pointer-events:all;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Hello World Siva</h1>
+    
+    <header>
+        <div class="container">
+            <div class="name">MyWebPage</div>
+            <div class="bar" onclick="doIt()">
+                <span id="first"></span>
+                <span id="second"></span>
+                <span id="third"></span>
+            </div>
+        </div>
+    </header>
+    <div id="slider">
+    </div>
+    <div id="content">
+        <li><span>Home</span></li>
+        <li><span>Services</span></li>
+        <li><span>Products</span></li>
+        <li><span>Contact</span></li>
+    </div>
+    
+    <div class="search">
+        <form class="form">
+            <input id="search" type="text" name="search" autocomplete="off" required onkeydown="formValid()"/>
+            <label for="search">
+                <span class="moveit">Search</span>
+            </label>
+        </form>
+    </div>
+    <div class="main">
+    <div class="search2">
+        <form class="form">
+            <input id="search2" type="text" name="search2" autocomplete="off" required/>
+            <span class="moving">
+                <span class="mark">O</span>
+            </span>
+        </form>
+    </div>
+</div>
+    <div id="cover" onclick="dialog()"></div>
+    <div id="cont">
+        <div id="notify">
+            <span onclick="dialog()">X</span>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+            </p>
+        </div>
+    </div>
+
+
+    <div class="clock">
+        
+    </div>
+    <script>
+        
+        function doIt()
+        {
+            document.getElementById("second").classList.toggle("move2");
+            document.getElementById("first").classList.toggle("move1");
+            document.getElementById("third").classList.toggle("move3");
+            slide();
+        }
+
+        function slide()
+        {
+            var i=0;
+            document.getElementById("slider").classList.toggle("slider");
+            document.getElementById("content").classList.toggle("content");
+            var val=["home","service","product","contact"];
+            var msg=document.querySelectorAll("#content li>span").forEach(
+            function(el)
+            {
+                el.classList.toggle(val[i]);
+                i++;
+            }
+            );
+        } 
+        function formValid()
+        {
+            var search=document.getElementById("search");
+            if( search.value.trim().length<8)
+                search.style.borderBottomColor="red";
+            else
+                search.style.borderBottomColor="rgb(255, 145, 0)";
+        }  
+        window.onload=()=>{ 
+            setTimeout(function()
+            {
+                document.getElementById("cover").classList.add("cover");
+                document.getElementById("cont").classList.add("cont");
+            },7000);
+        };
+        function dialog()
+        {
+            document.getElementById("cover").classList.remove("cover");
+            document.getElementById("cont").classList.remove("cont");
+        }
+    </script>
+  
 </body>
 </html>
